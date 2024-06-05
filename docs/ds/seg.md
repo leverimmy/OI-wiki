@@ -57,7 +57,8 @@ author: Marcythm, Ir1d, Ycrpro, Xeonacid, konnyakuxzy, CJSoft, HeRaNO, ethan-enh
         m = s + ((t - s) >> 1)
         # 移位运算符的优先级小于加减法，所以加上括号
         # 如果写成 (s + t) >> 1 可能会超出 int 范围
-        build(s, m, p * 2); build(m + 1, t, p * 2 + 1)
+        build(s, m, p * 2)
+        build(m + 1, t, p * 2 + 1)
         # 递归对左右区间建树
         d[p] = d[p * 2] + d[(p * 2) + 1]
     ```
@@ -104,8 +105,9 @@ author: Marcythm, Ir1d, Ycrpro, Xeonacid, konnyakuxzy, CJSoft, HeRaNO, ethan-enh
     def getsum(l, r, s, t, p):
         # [l, r] 为查询区间, [s, t] 为当前节点包含的区间, p 为当前节点的编号
         if l <= s and t <= r:
-            return d[p] # 当前区间为询问区间的子集时直接返回当前区间的和
-        m = s + ((t - s) >> 1); sum = 0
+            return d[p]  # 当前区间为询问区间的子集时直接返回当前区间的和
+        m = s + ((t - s) >> 1)
+        sum = 0
         if l <= m:
             sum = sum + getsum(l, r, s, m, p * 2)
         # 如果左儿子代表的区间 [s, m] 与询问区间有交集, 则递归查询左儿子
@@ -305,6 +307,7 @@ author: Marcythm, Ir1d, Ycrpro, Xeonacid, konnyakuxzy, CJSoft, HeRaNO, ethan-enh
             update(l, r, c, m + 1, t, p * 2 + 1)
         d[p] = d[p * 2] + d[p * 2 + 1]
     
+    
     def getsum(l, r, s, t, p):
         if l <= s and t <= r:
             return d[p]
@@ -415,7 +418,7 @@ int query(int p, int s, int t, int l, int r) {
         --8<-- "docs/ds/code/seg/seg_2.cpp"
         ```
 
-???+ note "[HihoCoder 1078 线段树的区间修改](https://cn.vjudge.net/problem/HihoCoder-1078)"
+???+ note "[HihoCoder 1078 线段树的区间修改](https://vjudge.net/problem/HihoCoder-1078)"
     假设货架上从左到右摆放了 $N$ 种商品，并且依次标号为 $1$ 到 $N$，其中标号为 $i$ 的商品的价格为 $Pi$。小 Hi 的每次操作分为两种可能，第一种是修改价格：小 Hi 给出一段区间 $[L, R]$ 和一个新的价格 $\textit{NewP}$，所有标号在这段区间中的商品的价格都变成 $\textit{NewP}$。第二种操作是询问：小 Hi 给出一段区间 $[L, R]$，而小 Ho 要做的便是计算出所有标号在这段区间中的商品的总价格，然后告诉小 Hi。
     
     ??? "参考代码"
@@ -423,7 +426,7 @@ int query(int p, int s, int t, int l, int r) {
         --8<-- "docs/ds/code/seg/seg_3.cpp"
         ```
 
-???+ note "[2018 Multi-University Training Contest 5 Problem G. Glad You Came](https://vjudge.net/problem/HDU-6356)"
+???+ note "[2018 Multi-University Training Contest 5 Problem G. Glad You Came](https://acm.hdu.edu.cn/showproblem.php?pid=6356)"
     ??? "解题思路"
         维护一下每个区间的永久标记就可以了，最后在线段树上跑一边 DFS 统计结果即可。注意打标记的时候加个剪枝优化，否则会 TLE。
 

@@ -136,7 +136,7 @@ int main() {
 
 这里提供一种只使用一个数组进行的树形 DP 方法。
 
-我们定义 $dp[u]$：以 $u$ 为根的子树中，从 $u$ 出发的最长路径。那么容易得出转移方程：$dp[u] = \max(dp[u], dp[v] + w(u, v))$，其中的 &v& 为 $u$ 的子节点，$w(u, v)$ 表示所经过边的权重。
+我们定义 $dp[u]$：以 $u$ 为根的子树中，从 $u$ 出发的最长路径。那么容易得出转移方程：$dp[u] = \max(dp[u], dp[v] + w(u, v))$，其中的 $v$ 为 $u$ 的子节点，$w(u, v)$ 表示所经过边的权重。
 
 对于树的直径，实际上是可以通过枚举从某个节点出发不同的两条路径相加的最大值求出。因此，在 DP 求解的过程中，我们只需要在更新 $dp[u]$ 之前，计算 $d = \max(d, dp[u] + dp[v] + w(u, v))$ 即可算出直径 $d$。
 
@@ -187,7 +187,7 @@ int main() {
 
 -   [CodeChef, Diameter of Tree](https://www.codechef.com/problems/DTREE)
 -   [Educational Codeforces Round 35, Problem F, Tree Destruction](https://codeforces.com/contest/911/problem/F)
--   [ZOJ 3820, Building Fire Stations](https://vjudge.net/problem/ZOJ-3820)
+-   [ZOJ 3820, Building Fire Stations](https://pintia.cn/problem-sets/91827364500/exam/problems/91827369872)
 -   [CEOI2019/CodeForces 1192B. Dynamic Diameter](https://codeforces.com/contest/1192/problem/B)
 -   [IPSC 2019 网络赛，Lightning Routing I](https://nanti.jisuanke.com/t/41398)
 -   [NOIP2007 提高组 树网的核](https://www.luogu.com.cn/problem/P1099)
